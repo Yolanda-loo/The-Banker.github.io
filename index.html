@@ -62,13 +62,14 @@
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
                 <div id="step1">
                     <h2 class="text-2xl font-bold mb-6">How much do you need?</h2>
-                    <input type="range" id="loanRange" min="1000" max="50000" step="1000" value="10000" class="w-full h-2 accent-amber-500 mb-6 cursor-pointer">
-                    <p class="text-4xl font-extrabold text-slate-900" id="displayAmount">R10,000</p>
-                    <p class="text-sm text-slate-500 mt-2 mb-6">Every R100 borrowed adds 40% interest, so your total repayment is shown below.</p>
+                    <input type="range" id="loanRange" min="100" max="50000" step="100" value="100" class="w-full h-2 accent-amber-500 mb-6 cursor-pointer">
+                    <p class="text-4xl font-extrabold text-slate-900" id="displayAmount">R100</p>
+                    <p class="text-sm text-slate-500 mt-2 mb-6">Every R100 borrowed adds 40% interest, and contract termination costs R50.</p>
                     <div class="bg-amber-50 rounded-2xl p-4 mb-8 border border-amber-200">
                         <p class="text-sm font-semibold uppercase tracking-wider text-slate-500">Total to repay</p>
-                        <p class="text-2xl font-extrabold text-amber-600" id="repaymentAmount">R14,000</p>
-                        <p class="text-sm text-slate-500 mt-1" id="interestSummary">40% interest added: R4,000</p>
+                        <p class="text-2xl font-extrabold text-amber-600" id="repaymentAmount">R140</p>
+                        <p class="text-sm text-slate-500 mt-1" id="interestSummary">40% interest added: R40</p>
+                        <p class="text-sm text-slate-500 mt-1" id="terminationSummary">Termination fee: R50</p>
                     </div>
                     <button onclick="nextStep()" class="w-full bg-amber-500 text-white py-4 rounded-xl font-bold hover:bg-amber-600 transition">Continue</button>
                 </div>
@@ -81,7 +82,7 @@
 
                         <div class="border border-amber-200 rounded-2xl p-4 mb-4 bg-amber-50">
                             <h3 class="font-semibold text-slate-900 mb-2">Loan Contract</h3>
-                            <p class="text-sm text-slate-600 mb-3">By signing below, you confirm that you understand the loan amount, the 40% interest added, and the total repayment shown above.</p>
+                            <p class="text-sm text-slate-600 mb-3">By signing below, you confirm that you understand the loan amount, the 40% interest added, and the R50 contract termination fee.</p>
                             <textarea id="signatureInput" rows="3" placeholder="Type your full name to sign the contract" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-amber-500 outline-none" required></textarea>
                             <label class="flex items-start gap-3 mt-3 text-sm text-slate-600">
                                 <input type="checkbox" id="contractCheckbox" class="mt-1 h-4 w-4 rounded border-amber-300 text-amber-600 focus:ring-amber-500" required>
@@ -155,10 +156,12 @@
             const borrowedAmount = parseInt(e.target.value);
             const interestAmount = borrowedAmount * 0.4;
             const totalRepayment = borrowedAmount + interestAmount;
+            const terminationFee = 50;
 
             document.getElementById('displayAmount').innerText = 'R' + borrowedAmount.toLocaleString();
             document.getElementById('repaymentAmount').innerText = 'R' + totalRepayment.toLocaleString();
             document.getElementById('interestSummary').innerText = '40% interest added: R' + interestAmount.toLocaleString();
+            document.getElementById('terminationSummary').innerText = 'Termination fee: R' + terminationFee.toLocaleString();
         });
 
         const agentToggle = document.getElementById('agentToggle');
