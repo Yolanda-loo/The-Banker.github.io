@@ -56,6 +56,33 @@
             font-weight: bold;
             margin-left: auto;
         }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom-24 right-6;
+            z-index: 40;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -67,6 +94,7 @@
             <div class="hidden md:flex space-x-6 font-semibold text-sm items-center">
                 <a href="#home" class="hover:text-amber-500 transition">Home</a>
                 <a href="#about" class="hover:text-amber-500 transition">About</a>
+                <a href="investors.html" class="hover:text-amber-500 transition">For Investors</a>
                 <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
                 <a href="#apply" class="bg-amber-500 text-white px-6 py-2.5 rounded-lg hover:bg-amber-600 transition">Apply Now</a>
             </div>
@@ -210,11 +238,34 @@
     <section id="contact" class="py-20 bg-white">
         <div class="container mx-auto px-6 max-w-lg">
             <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Message Us</h2>
-            <form id="contactForm" class="space-y-4">
+            <form id="contactForm" class="space-y-4 mb-8">
                 <input type="text" placeholder="Full Name" class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-amber-500 outline-none" required>
                 <textarea placeholder="How can we help?" class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-amber-500 outline-none" rows="4" required></textarea>
                 <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-bold hover:bg-amber-600 transition">Send Message</button>
             </form>
+            
+            <!-- Contact Methods -->
+            <div class="border-t pt-8">
+                <h3 class="text-xl font-bold text-slate-900 mb-6 text-center">Other Ways to Reach Us</h3>
+                <div class="space-y-4">
+                    <!-- WhatsApp Contact -->
+                    <div class="flex items-center justify-center">
+                        <a href="https://wa.me/27732844707" target="_blank" class="whatsapp-btn">
+                            <span>📱 WhatsApp</span>
+                            <span>+27 73 328 44707</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Email Contact for Investors -->
+                    <div class="flex items-center justify-center gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <span class="text-2xl">📧</span>
+                        <div>
+                            <p class="text-sm text-slate-600">Investment Inquiries</p>
+                            <p class="font-semibold text-slate-900">investors@thebanker.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -226,6 +277,15 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/27732844707" target="_blank" class="whatsapp-btn shadow-lg">
+            <span>💬</span>
+            <span>Chat on WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- Chat Agent Toggle -->
     <div class="fixed bottom-6 right-6 z-50">
         <button id="agentToggle" class="bg-amber-500 text-white px-4 py-3 rounded-full shadow-lg font-semibold hover:bg-amber-600 transition">💬 Ask The Banker</button>
         <div id="agentPanel" class="hidden mt-3 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
