@@ -201,6 +201,27 @@ document.addEventListener('DOMContentLoaded', () => {
             submitApplication();
         });
     }
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+            const isOpen = mobileBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenu.classList.toggle('hidden');
+            mobileBtn.setAttribute('aria-expanded', (!isOpen).toString());
+        });
+
+        // Close mobile menu when any link inside it is clicked
+        mobileMenu.querySelectorAll('a[href^="#"], a[href$=".html"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
 });
 
 function submitApplication() {
@@ -288,11 +309,14 @@ if (agentToggle && agentPanel && agentForm && agentInput && agentMessages) {
 }
 
 // Contact Form
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert("Message sent! Thanks for reaching out.");
-    e.target.reset();
-});
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Message sent! Thanks for reaching out.");
+        e.target.reset();
+    });
+}
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
