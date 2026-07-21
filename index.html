@@ -88,15 +88,30 @@
 <body class="bg-slate-50 text-slate-900">
  
     <!-- Navigation -->
-    <nav class="bg-white border-b sticky top-0 z-50">
+    <nav class="relative bg-white border-b sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#home" class="text-2xl font-extrabold tracking-tighter text-slate-900">THE BANKER</a>
+
+            <!-- Mobile menu button (visible on small screens) -->
+            <button id="mobile-toggle" class="md:hidden p-2 rounded-lg focus:outline-none" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
             <div class="hidden md:flex space-x-6 font-semibold text-sm items-center">
                 <a href="#home" class="hover:text-amber-500 transition">Home</a>
                 <a href="#about" class="hover:text-amber-500 transition">About</a>
                 <a href="investors.html" class="hover:text-amber-500 transition">For Investors</a>
                 <a href="#contact" class="hover:text-amber-500 transition">Contact</a>
                 <a href="#apply" class="bg-amber-500 text-white px-6 py-2.5 rounded-lg hover:bg-amber-600 transition">Apply Now</a>
+            </div>
+        </div>
+
+        <!-- Mobile navigation (hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="flex flex-col px-6 py-4 space-y-3">
+                <a href="#home" class="block font-semibold py-2">Home</a>
+                <a href="#about" class="block font-semibold py-2">About</a>
+                <a href="investors.html" class="block font-semibold py-2">For Investors</a>
+                <a href="#contact" class="block font-semibold py-2">Contact</a>
+                <a href="#apply" class="block bg-amber-500 text-white px-4 py-2 rounded-lg text-center font-bold">Apply Now</a>
             </div>
         </div>
     </nav>
@@ -159,7 +174,7 @@
                     <div class="border border-amber-200 rounded-2xl p-4 mb-4 bg-amber-50">
                         <h3 class="font-semibold text-slate-900 mb-2">Loan Contract</h3>
                         <p class="text-sm text-slate-600 mb-3">By signing below, you confirm that you understand the loan amount, the 40% interest added, and the R50 contract termination fee.</p>
-                        <textarea id="signatureInput" rows="3" placeholder="Type your full name to sign the contract" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-amber-500 outline-none" required></textarea>
+                        <textarea id="signatureInput" rows="3" placeholder="Type your full name to sign the contract" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
                         <label class="flex items-start gap-3 mt-3 text-sm text-slate-600">
                             <input type="checkbox" id="contractCheckbox" class="mt-1 h-4 w-4 rounded border-amber-300 text-amber-600 focus:ring-amber-500" required>
                             <span>I agree to the terms of the loan contract and confirm my details are correct.</span>
