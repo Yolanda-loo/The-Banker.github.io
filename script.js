@@ -188,8 +188,9 @@ function checkUploadStatus() {
     }
 }
 
-// Initialize file uploads on page load
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize file uploads
     initializeFileUpload('idUploadArea', 'idInput', 'idPreview', 'id');
     initializeFileUpload('statementUploadArea', 'statementInput', 'statementPreview', 'statement');
 
@@ -202,24 +203,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mobile menu toggle
+    // Mobile menu toggle - FIXED
     const mobileBtn = document.getElementById('mobile-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    
     if (mobileBtn && mobileMenu) {
-        mobileBtn.addEventListener('click', () => {
-            const isOpen = mobileBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenu.classList.toggle('hidden');
-            mobileBtn.setAttribute('aria-expanded', (!isOpen).toString());
+        // Toggle menu on button click
+        mobileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileBtn.setAttribute('aria-expanded', 'false');
+            }
         });
 
         // Close mobile menu when any link inside it is clicked
-        mobileMenu.querySelectorAll('a[href^="#"], a[href$=".html"]').forEach(link => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                     mobileBtn.setAttribute('aria-expanded', 'false');
                 }
-            });
+            }
         });
     }
 });
